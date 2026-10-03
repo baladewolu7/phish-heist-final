@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Phish Heist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Home screen -->
+  <section id="home-screen" class="screen active">
+    <div class="scan-line"></div>
+
+    <div class="home-container">
+      <p class="system-text">
+        Welcome to our Phish Heist!
+      </p>
+
+      <h1>PHISH<span>HEIST</span></h1>
+
+      <p class="tagline">
+        Our vault is under attack! Can you identify the phishing
+        attempts before it's too late? Test your skills and protect
+        our digital assets from cybercriminals.
+      </p>
+
+      <button id="start-btn" type="button">
+        START THE MISSION
+      </button>
+
+      <p class="warning-text">
+        This game is designed for educational purposes.
+        Always be vigilant and protect your personal information online.
+      </p>
+    </div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game-screen" class="screen" hidden>
+    <h2>Inspect the Message</h2>
+
+<p>
+    Question<span id="questionNumber"></span>
+</p>
+
+    <p id="score">Score: 0</p>
+
+    <p>Vault Health: <span id="vault-health">100%</span></p>
+
+    <p>
+      <strong>From:</strong>
+      <span id="sender"></span>
+    </p>
+
+    <p>
+        <strong>Subject:</strong>
+        <span id="subject"></span>
+    </p>
+
+    <p id="message"></p>
+    <h3 id="subject"></h3>
+    <p id="message"></p>
+
+    <p>
+      <strong>Displayed link:</strong>
+      <span id="link"></span>
+    </p>
+
+    <button id="phishing-btn" type="button">
+      PHISHING
+    </button>
+
+    <button id="legitimate-btn" type="button">
+      LEGITIMATE
+    </button>
+
+    <div id="feedback" aria-live="polite"></div>
+
+    <button id="next-btn" type="button" hidden>
+      NEXT MESSAGE
+    </button>
+  </section>
+
+  <!-- Results screen -->
+  <section id="results-screen" class="screen" hidden>
+    <h2>MISSION COMPLETE</h2>
+
+    <p id="final-score"></p>
+
+    <button id="restart-btn" type="button">
+      PLAY AGAIN
+    </button>
+  </section>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>
