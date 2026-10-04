@@ -244,16 +244,24 @@ function endGame() {
 // START THE GAME
 // ========================================
 
-document.getElementById("start-btn").addEventListener("click", function () {
+// ========================================
+// START THE GAME
+// ========================================
+
+const startButton = document.getElementById("start-btn");
+
+startButton.addEventListener("click", function () {
+
     const homeScreen = document.getElementById("home-screen");
     const gameScreen = document.getElementById("game-screen");
 
-    homeScreen.classList.add("hidden");
-    homeScreen.classList.remove("active");
+    // Hide the landing screen
+    homeScreen.hidden = true;
 
-    gameScreen.classList.remove("hidden");
-    gameScreen.classList.add("active");
+    // Reveal the game screen
+    gameScreen.hidden = false;
 
+    // Load the first phishing question
     updateGameStats();
     loadQuestion();
 });
