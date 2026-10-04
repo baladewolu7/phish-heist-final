@@ -250,6 +250,7 @@ function endGame() {
 // ========================================
 
 document.getElementById("start-btn").addEventListener("click", function () {
+    
     document.getElementById("home-screen").hidden = true;
     document.getElementById("game-screen").hidden = false;
 
