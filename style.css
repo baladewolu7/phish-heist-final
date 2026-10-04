@@ -23,6 +23,10 @@ body {
     height: 100vh;
 }
 
+.hidden {
+    display: none !important;
+}
+
 #home-screen {
     display: flex;
     justify-content: center;
@@ -43,7 +47,7 @@ body {
     max-width: 800px;
     padding: 50px;
     border: 1px solid var(--green);
-    background-color: rgba (0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.85);
     box-shadow:
         0 0 20px rgba(0,225,136,0.25),
         inset 0 0 20px rgba(0,255, 136,0.05);
@@ -64,9 +68,9 @@ h1{
 }
 
 h1 span {
-    color: car(--green);
+    color: var(--green);
     text-shadow:
-        0 0 5pm var(--green),
+        0 0 5px var(--green),
         0 0 15px var(--green);
 }
 
@@ -102,7 +106,7 @@ h1 span {
 
 .warning-text {
     margin-top: 30px;
-    color: var(--grey);
+color: var(--gray);
     font-size: 0.7rem;
     letter-spacing: 3px;
 }

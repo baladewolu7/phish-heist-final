@@ -248,10 +248,10 @@ document.getElementById("start-btn").addEventListener("click", function () {
     const homeScreen = document.getElementById("home-screen");
     const gameScreen = document.getElementById("game-screen");
 
+    homeScreen.classList.add("hidden");
     homeScreen.classList.remove("active");
-    homeScreen.hidden = true;
 
-    gameScreen.hidden = false;
+    gameScreen.classList.remove("hidden");
     gameScreen.classList.add("active");
 
     updateGameStats();
