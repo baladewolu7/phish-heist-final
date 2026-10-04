@@ -76,6 +76,9 @@ function loadQuestion() {
 
     const question = questions[currentQuestion];
 
+    document.getElementById("questionNumber").textContent =
+        ` ${currentQuestion + 1} of ${questions.length}`;
+
     document.getElementById("sender").textContent = question.sender;
     document.getElementById("subject").textContent = question.subject;
     document.getElementById("message").textContent = question.message;
@@ -138,7 +141,7 @@ function showFeedback(correct, explanation) {
     }
 
     // Show the Next Message button
-    document.getElementById("next-btn").style.display = "block";
+   document.getElementById("next-btn").hidden = false;
 }
 
 
@@ -148,8 +151,11 @@ function showFeedback(correct, explanation) {
 
 function updateGameStats() {
 
-    document.getElementById("score").textContent = score;
-    document.getElementById("health").textContent = vaultHealth;
+    document.getElementById("score").textContent =
+        `Score: ${score}`;
+
+    document.getElementById("vault-health").textContent =
+        `${vaultHealth}%`;
 }
 
 
@@ -168,11 +174,11 @@ document.getElementById("phishing-btn").addEventListener("click", function() {
 // SAFE BUTTON
 // ========================================
 
-document.getElementById("safe-btn").addEventListener("click", function() {
-
+document.getElementById("legitimate-btn").addEventListener("click", function() {
     checkAnswer("safe");
-
 });
+
+
 
 
 // ========================================
@@ -191,7 +197,7 @@ document.getElementById("next-btn").addEventListener("click", function() {
         document.getElementById("feedback").innerHTML = "";
 
         // Hide Next button again
-        document.getElementById("next-btn").style.display = "none";
+        document.getElementById("next-btn").hidden = true;
 
         // Load the next question
         loadQuestion();
@@ -210,7 +216,7 @@ document.getElementById("next-btn").addEventListener("click", function() {
 
 function endGame() {
 
-    const game = document.getElementById("game");
+    const game = document.getElementById("game-screen");
 
     if (score >= 4) {
 
@@ -261,4 +267,10 @@ function endGame() {
 // START THE GAME
 // ========================================
 
-loadQuestion();
+document.getElementById("start-btn").addEventListener("click", function() {
+
+    document.getElementById("home-screen").hidden = true;
+    document.getElementById("game-screen").hidden = false;
+
+    loadQuestion();
+});
