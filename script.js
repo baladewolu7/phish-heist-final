@@ -60,7 +60,7 @@ const questions = [
 
 
 // ========================================
-// PLAYER 2: GAME VARIABLES
+// GAME VARIABLES
 // ========================================
 
 let currentQuestion = 0;
@@ -73,7 +73,6 @@ let vaultHealth = 100;
 // ========================================
 
 function loadQuestion() {
-
     const question = questions[currentQuestion];
 
     document.getElementById("questionNumber").textContent =
@@ -82,7 +81,18 @@ function loadQuestion() {
     document.getElementById("sender").textContent = question.sender;
     document.getElementById("subject").textContent = question.subject;
     document.getElementById("message").textContent = question.message;
-    document.getElementById("link").textContent = question.link;
+    document.getElementById("link").textContent =
+        question.link || "No link included";
+
+    // Clear feedback from previous question
+    document.getElementById("feedback").innerHTML = "";
+
+    // Hide Next button until player answers
+    document.getElementById("next-btn").hidden = true;
+
+    // Re-enable answer buttons
+    document.getElementById("phishing-btn").disabled = false;
+    document.getElementById("legitimate-btn").disabled = false;
 }
 
 
@@ -91,23 +101,20 @@ function loadQuestion() {
 // ========================================
 
 function checkAnswer(playerAnswer) {
-
     const question = questions[currentQuestion];
 
-    // Check if the player's answer matches the correct answer
-    if (playerAnswer === question.correctAnswer) {
+    // Stop the player from clicking multiple answers
+    document.getElementById("phishing-btn").disabled = true;
+    document.getElementById("legitimate-btn").disabled = true;
 
-        // Correct answer
+    if (playerAnswer === question.correctAnswer) {
         score++;
 
         showFeedback(true, question.explanation);
 
     } else {
-
-        // Wrong answer
         vaultHealth -= 20;
 
-        // Prevent vault health from going below 0
         if (vaultHealth < 0) {
             vaultHealth = 0;
         }
@@ -124,24 +131,22 @@ function checkAnswer(playerAnswer) {
 // ========================================
 
 function showFeedback(correct, explanation) {
-
     const feedback = document.getElementById("feedback");
 
     if (correct) {
-
-        feedback.innerHTML =
-            "<h3>🔐 THREAT BLOCKED!</h3>" +
-            "<p>" + explanation + "</p>";
-
+        feedback.innerHTML = `
+            <h3>🔐 THREAT BLOCKED!</h3>
+            <p>${explanation}</p>
+        `;
     } else {
-
-        feedback.innerHTML =
-            "<h3>⚠️ SECURITY BREACH!</h3>" +
-            "<p>" + explanation + "</p>";
+        feedback.innerHTML = `
+            <h3>⚠️ SECURITY BREACH!</h3>
+            <p>${explanation}</p>
+        `;
     }
 
-    // Show the Next Message button
-   document.getElementById("next-btn").hidden = false;
+    // Show Next Message button
+    document.getElementById("next-btn").hidden = false;
 }
 
 
@@ -150,7 +155,6 @@ function showFeedback(correct, explanation) {
 // ========================================
 
 function updateGameStats() {
-
     document.getElementById("score").textContent =
         `Score: ${score}`;
 
@@ -163,48 +167,30 @@ function updateGameStats() {
 // PHISHING BUTTON
 // ========================================
 
-document.getElementById("phishing-btn").addEventListener("click", function() {
-
+document.getElementById("phishing-btn").addEventListener("click", function () {
     checkAnswer("phishing");
-
 });
 
 
 // ========================================
-// SAFE BUTTON
+// LEGITIMATE BUTTON
 // ========================================
 
-document.getElementById("legitimate-btn").addEventListener("click", function() {
+document.getElementById("legitimate-btn").addEventListener("click", function () {
     checkAnswer("safe");
 });
-
-
 
 
 // ========================================
 // NEXT QUESTION BUTTON
 // ========================================
 
-document.getElementById("next-btn").addEventListener("click", function() {
-
-    // Move to the next question
+document.getElementById("next-btn").addEventListener("click", function () {
     currentQuestion++;
 
-    // Check if more questions exist
     if (currentQuestion < questions.length) {
-
-        // Clear old feedback
-        document.getElementById("feedback").innerHTML = "";
-
-        // Hide Next button again
-        document.getElementById("next-btn").hidden = true;
-
-        // Load the next question
         loadQuestion();
-
     } else {
-
-        // No questions left
         endGame();
     }
 });
@@ -215,11 +201,9 @@ document.getElementById("next-btn").addEventListener("click", function() {
 // ========================================
 
 function endGame() {
-
     const game = document.getElementById("game-screen");
 
     if (score >= 4) {
-
         game.innerHTML = `
             <h1>🔐 HEIST STOPPED</h1>
 
@@ -238,9 +222,7 @@ function endGame() {
                 PLAY AGAIN
             </button>
         `;
-
     } else {
-
         game.innerHTML = `
             <h1>🚨 VAULT BREACHED</h1>
 
@@ -267,10 +249,10 @@ function endGame() {
 // START THE GAME
 // ========================================
 
-document.getElementById("start-btn").addEventListener("click", function() {
-
+document.getElementById("start-btn").addEventListener("click", function () {
     document.getElementById("home-screen").hidden = true;
     document.getElementById("game-screen").hidden = false;
 
+    updateGameStats();
     loadQuestion();
 });
