@@ -23,6 +23,10 @@ body {
     height: 100vh;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 .hidden {
     display: none !important;
 }
@@ -131,4 +135,59 @@ color: var(--gray);
     100% {
         top: 100%;
     }
+}
+#game-screen {
+    padding: 40px;
+    background-color: var(--black);
+    color: var(--white);
+    overflow-y: auto;
+}
+
+#game-screen h2 {
+    color: var(--green);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+#game-screen p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+#sender,
+#subject,
+#link {
+    color: var(--green);
+}
+
+#message {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid var(--green);
+    background-color: rgba(0, 255, 136, 0.05);
+}
+
+#phishing-btn,
+#legitimate-btn,
+#next-btn {
+    padding: 12px 20px;
+    margin: 10px 10px 10px 0;
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#phishing-btn:hover,
+#legitimate-btn:hover,
+#next-btn:hover {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+#feedback {
+    margin-top: 20px;
+    max-width: 700px;
 }
