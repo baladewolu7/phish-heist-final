@@ -84,13 +84,10 @@ function loadQuestion() {
     document.getElementById("link").textContent =
         question.link || "No link included";
 
-    // Clear feedback from previous question
     document.getElementById("feedback").innerHTML = "";
 
-    // Hide Next button until player answers
     document.getElementById("next-btn").hidden = true;
 
-    // Re-enable answer buttons
     document.getElementById("phishing-btn").disabled = false;
     document.getElementById("legitimate-btn").disabled = false;
 }
@@ -103,7 +100,7 @@ function loadQuestion() {
 function checkAnswer(playerAnswer) {
     const question = questions[currentQuestion];
 
-    // Stop the player from clicking multiple answers
+    // Prevent multiple answers on the same question
     document.getElementById("phishing-btn").disabled = true;
     document.getElementById("legitimate-btn").disabled = true;
 
@@ -111,7 +108,6 @@ function checkAnswer(playerAnswer) {
         score++;
 
         showFeedback(true, question.explanation);
-
     } else {
         vaultHealth -= 20;
 
@@ -145,7 +141,6 @@ function showFeedback(correct, explanation) {
         `;
     }
 
-    // Show Next Message button
     document.getElementById("next-btn").hidden = false;
 }
 
@@ -201,10 +196,10 @@ document.getElementById("next-btn").addEventListener("click", function () {
 // ========================================
 
 function endGame() {
-    const game = document.getElementById("game-screen");
+    const gameScreen = document.getElementById("game-screen");
 
     if (score >= 4) {
-        game.innerHTML = `
+        gameScreen.innerHTML = `
             <h1>🔐 HEIST STOPPED</h1>
 
             <h2>The Rowdy Vault is secure!</h2>
@@ -223,7 +218,7 @@ function endGame() {
             </button>
         `;
     } else {
-        game.innerHTML = `
+        gameScreen.innerHTML = `
             <h1>🚨 VAULT BREACHED</h1>
 
             <h2>The attackers got through!</h2>
@@ -250,9 +245,14 @@ function endGame() {
 // ========================================
 
 document.getElementById("start-btn").addEventListener("click", function () {
-    
-    document.getElementById("home-screen").hidden = true;
-    document.getElementById("game-screen").hidden = false;
+    const homeScreen = document.getElementById("home-screen");
+    const gameScreen = document.getElementById("game-screen");
+
+    homeScreen.classList.remove("active");
+    homeScreen.hidden = true;
+
+    gameScreen.hidden = false;
+    gameScreen.classList.add("active");
 
     updateGameStats();
     loadQuestion();
