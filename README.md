@@ -35,8 +35,8 @@ Phish Heist turns phishing awareness into a heist-themed game. Players act as cy
 ## Team
 
 - Busayo Aladewolu — Cybersecurity Content, JavaScript Integration, Testing & Presentation
-- Uyosia Osayande — HTML / Front-End Structure
-- Courtney Williams — CSS / Visual Design
+- Uyiosa Osayande — HTML / Front-End Structure, CSS / Visual Design 
+- Courtney Williams — JavaScript 
 
 ## Purpose
 
